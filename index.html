@@ -9,13 +9,16 @@
         html, body { height: 100%; }
         body {
             font-family: 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            color: #060607;
             background-color: #1e1f22;
-            background-image:
-                radial-gradient(circle at 88% 0%, rgba(88, 101, 242, 0.55) 0%, rgba(88, 101, 242, 0) 45%),
-                radial-gradient(circle at 8% 100%, rgba(63, 74, 192, 0.55) 0%, rgba(63, 74, 192, 0) 45%),
-                radial-gradient(circle at 75% 95%, rgba(148, 156, 247, 0.22) 0%, rgba(148, 156, 247, 0) 40%);
-            background-attachment: fixed;
+            color: #060607;
+        }
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
         .login-page {
             min-height: 100vh;
@@ -67,7 +70,7 @@
             display: block;
             font-size: 12px;
             line-height: 16px;
-            font-weight: 700;
+            font-weight: 600;
             color: #4e5058;
             text-transform: uppercase;
             letter-spacing: .02em;
@@ -119,6 +122,7 @@
             padding: 20px;
             text-align: center;
         }
+        .login-container { display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .qr-code {
             position: relative;
             background: #fff;
@@ -144,20 +148,20 @@
             justify-content: center;
             pointer-events: none;
         }
-        .right-section h2 {
+        .login-container h2 {
             font-size: 18px;
             line-height: 24px;
             font-weight: 600;
             color: #060607;
             margin-bottom: 8px;
         }
-        .right-section p {
+        .login-container p {
             font-size: 12px;
             line-height: 16px;
             color: #4e5058;
             margin-bottom: 12px;
         }
-        .right-section > a { color: #00a8fc; font-size: 14px; text-decoration: none; }
+        .login-container a { color: #00a8fc; font-size: 14px; text-decoration: none; }
         @media (max-width: 720px) {
             .authBox { flex-direction: column; }
             .main-form { width: 100%; }
@@ -166,6 +170,15 @@
     </style>
 </head>
 <body>
+
+    <svg class="bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="1600" height="900" fill="#1e1f22"/>
+        <path fill="#5865f2" d="M1268 0c92 22 163 72 198 148 35 76 25 166-45 216-70 50-180 40-230-25-50-65-35-155 5-235 20-40 45-79 72-104z"/>
+        <path fill="#4752c4" d="M0 615c60-50 160-70 230-30 70 40 90 120 50 180-40 60-130 100-200 80C10 825-30 725 0 615z"/>
+        <path fill="#949cf7" opacity=".55" d="M60 300c-50 40-70 120-20 170 50 50 150 40 180-20 30-60-20-150-90-170-30-10-50 5-70 20z"/>
+        <path fill="#5865f2" opacity=".7" d="M250 0c55 30 95 90 75 150-20 60-80 90-130 60-50-30-50-100-20-150 15-35 45-60 75-60z"/>
+        <path fill="#3a45c5" opacity=".6" d="M1495 695c40-20 80-65 100-125 20-60 0-130-40-160-40-30-100-10-120 50-20 60-10 130 30 180 10 20 20 40 30 55z"/>
+    </svg>
 
     <div class="login-page">
         <div class="svg-logo-text">
@@ -178,26 +191,33 @@
         <main class="main">
             <div class="authBox">
                 <div class="main-form">
-                    <form id="login-form" action="#" autocomplete="off">
-                        <div class="main-form-header">
-                            <h1>Welcome back!</h1>
-                            <p>We're so excited to see you again!</p>
+                    <form id="login-form" action="#">
+                        <div class="input-groups">
+                            <div class="main-form-header">
+                                <h1>Welcome back!</h1>
+                                <p>We're so excited to see you again!</p>
+                            </div>
+                            <div class="email-wrapper">
+                                <label for="emailORphone">
+                                    Email or Phone Number
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="text" id="emailORphone" required autocomplete="off">
+                            </div>
+                            <div class="password-wrapper">
+                                <label for="password">
+                                    Password
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="password" id="password" required>
+                            </div>
                         </div>
-
-                        <label for="emailORphone">Email or Phone Number <span class="required">*</span></label>
-                        <input type="text" id="emailORphone" placeholder="Email or phone number" required autocomplete="off">
-
-                        <label for="password">Password <span class="required">*</span></label>
-                        <input type="password" id="password" placeholder="Password" required autocomplete="off">
-
                         <div class="forgot-password">
                             <a href="#">Forgot your password?</a>
                         </div>
-
                         <div class="login">
                             <button type="submit">Log In</button>
                         </div>
-
                         <div class="small-register">
                             <span>Need an account?</span>
                             <a href="#">Register</a>
@@ -206,16 +226,18 @@
                 </div>
 
                 <div class="right-section">
-                    <div class="qr-code" id="qr-code">
-                        <span class="qr-logo">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="#5865f2" aria-hidden="true">
-                                <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/>
-                            </svg>
-                        </span>
+                    <div class="login-container">
+                        <div class="qr-code" id="qr-code">
+                            <span class="qr-logo">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="#5865f2" aria-hidden="true">
+                                    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/>
+                                </svg>
+                            </span>
+                        </div>
+                        <h2>Log in with QR Code</h2>
+                        <p>Scan this with the <strong>Discord mobile app</strong> to log in instantly.</p>
+                        <a href="#">Or sign in with passkey</a>
                     </div>
-                    <h2>Log in with QR Code</h2>
-                    <p>Scan this with the <strong>Discord mobile app</strong> to log in instantly.</p>
-                    <a href="#">Or sign in with passkey</a>
                 </div>
             </div>
         </main>
